@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+//AIzaSyBqFQE6qyXbTsJPqBzlAt0AfdCniFwtzNM
+import GoogleMapReact from 'google-map-react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+const Map = ({ text }) => (
+  <div style={{
+    color: 'white', 
+    background: '#320DE8',
+    padding: '8px 10px',
+    display: 'inline-flex',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '100%',
+    transform: 'translate(-50%, -50%)'
+  }}>
+    {text}
+  </div>
+);
+
+class App extends Component {
+  static defaultProps = {
+    center: {
+      lat: 32.0853,
+      lng: 34.7818
+    },
+    zoom: 14
+  };
+
+  render() {
+    return (
+
+      <div style={{marginLeft:'30%'}}>
+        <h1 style={{marginLeft:'15%'}}>City Tel Aviv</h1>
+      <div style={{ height: '500px', width: '500px' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key:'AIzaSyBqFQE6qyXbTsJPqBzlAt0AfdCniFwtzNM' }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <Map
+            lat={32.0853}
+            lng={34.7818}
+            text={'Tel Aviv'}
+          />
+        </GoogleMapReact>
+      </div>
+      </div>
+    );
+  }
 }
 
 export default App;
